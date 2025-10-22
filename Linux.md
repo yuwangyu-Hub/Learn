@@ -119,9 +119,9 @@ Linux Shell 学习
       |-- $0 : shell的名称。例子：echo $0 ,显示当前使用的shell的名称
       |-- $USER : 用户名
       |-- $HOME : 用户home文件夹的全路径
-      |-- $PATH : 添加程序命令的环境变量地址，例如在任何地方都可以使用nano、cp、ls。就是因为这些程序在PATH中添加了对应的环境变量，通过环境变量找到对应的可执行文件
+      |-- $PATH : 添加程序命令的环境变量地址，例如在任何地方都可以使用nano、cp、ls。就是因为这些程序在PATH中添加了对应的环境变量，通过环境变量找到对应的可执行文件，见下
 
-##PATH##
+#PATH#
 
     PATH=$PATH:想要执行的程序的万地址   例：PATH=$PATH:~/src/raycaster/raycasting-awk,在这个地址位置下的程序：run.sh程序就可以在任何位置执行了，但是一旦重启会失去设置的环境变量，可以使用下面的rc文件添加。
     env ：可视化查看所有的环境变量    
@@ -240,3 +240,15 @@ Linux Shell 学习
     原理：多个shell命令放入同一个文件中，一起执行。
     .sh后缀格式文件就是shell脚本文件。
     如果是处理更复杂的内容shell就会变得更加的冗余，这时候就需要转向更合适的语言如python。但是在处理相对简单的任务时是非常有效的。
+    例子：
+        nano welcome.sh --创建shell脚本文件。
+    内部内容：
+        echo "Hello World" --双引号可当作容器，这样能够忽略掉Hello World中的空格。
+        echo "Welcome to the system"
+        echo "Good bey"
+    保存导出后，需要用当前使用的shell来运行脚本。如：bash ./welcome.sh
+
+
+
+
+        
