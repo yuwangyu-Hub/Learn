@@ -103,21 +103,26 @@ Linux Shell 学习
     |--var：系统生成的日志文件（可读可写）
 
 
-多种类型的shell
+#多种类型的shell
     
     ~ /bin/
     |--bash:一种输入输出并解释的shell（shell解释器），the bourne-again shell。打开shell默认是bash
     |--zsh:另一种新的shell,进入zsh可直接输入zsh，退出输入exit
     |--ksh：korn shell
 
-    echo：回显信息，将输入的内容打印在shell上，例子：echo "Hello world" 参考print。
+#echo：
 
-    环境变量：存储信息，存储内容，可以用标识符给他们贴标签。
+    回显信息，将输入的内容打印在shell上，例子：echo "Hello world" 参考print。
+
+#环境变量：存储信息，存储内容，可以用标识符给他们贴标签。
+     
       |-- $0 : shell的名称。例子：echo $0 ,显示当前使用的shell的名称
       |-- $USER : 用户名
       |-- $HOME : 用户home文件夹的全路径
       |-- $PATH : 添加程序命令的环境变量地址，例如在任何地方都可以使用nano、cp、ls。就是因为这些程序在PATH中添加了对应的环境变量，通过环境变量找到对应的可执行文件
-        
+
+##PATH##
+
     PATH=$PATH:想要执行的程序的万地址   例：PATH=$PATH:~/src/raycaster/raycasting-awk,在这个地址位置下的程序：run.sh程序就可以在任何位置执行了，但是一旦重启会失去设置的环境变量，可以使用下面的rc文件添加。
     env ：可视化查看所有的环境变量    
     
@@ -200,6 +205,38 @@ Linux Shell 学习
     sudo apt install ./文件名.格式
     sudo apt-cache search <描述、标签> ：查找搜寻你可能要找的程序包
 
-文本编辑器：
+#文本编辑器：
+    
     nano
     vim
+理解系统调用
+   
+    fork()：create a child process identical to the parent
+        c程序，系统调用，请求内核复制创建一个
+    
+    exec(): start a program replacing the current process
+
+    open(): open a file for reading, writing, or both
+
+    close(): close an open file
+
+    mkdir(): create a new directory 
+
+    rmdir(): remove an empty directory
+
+    getpid(): return the PID of the caller
+
+    getppid(): return the PID of the parnt of caller
+    
+#子进程
+    
+    gcc name.c -o name :编译名字为name.c文件,然后-o输出到name的可执行文件中。
+
+#常用的shell工具
+
+
+#shell script：shell脚本
+    
+    原理：多个shell命令放入同一个文件中，一起执行。
+    .sh后缀格式文件就是shell脚本文件。
+    如果是处理更复杂的内容shell就会变得更加的冗余，这时候就需要转向更合适的语言如python。但是在处理相对简单的任务时是非常有效的。
