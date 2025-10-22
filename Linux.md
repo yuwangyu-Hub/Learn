@@ -1,6 +1,7 @@
 Linux Shell 学习
 
-命令：
+#命令：
+    
     pwd :显示现在所在的目录
 
     whoami :显示当前用户名\显示以什么身份登陆
@@ -64,12 +65,13 @@ Linux Shell 学习
     "" : 容器
     "~/Documents/Original file.txt":双引号内放置的内容可以带有空格，但是在shell中空格代表这间隔,不能有多余空格存在，会识别错误。
 
-不同的文件颜色，反应出文件的不同类型。
-蓝色：文件夹
-绿色：文件
-白色：许可证文件，Makefile、LICENSE
+#不同的文件颜色，反应出文件的不同类型。
+    
+    蓝色：文件夹
+    绿色：文件
+    白色：许可证文件，Makefile、LICENSE
 
-Liunx将隐藏 .xxx 以点开头文件
+#Liunx将隐藏 .xxx 以点开头文件
 
     rmdir Musics/ ：删除Musics文件夹，只有空文件夹才起作用。
     rm -R Musics/：删除该文件夹内的：文件、文件夹、文件夹内的子项
@@ -78,13 +80,14 @@ Liunx将隐藏 .xxx 以点开头文件
 
 
 
-tab键：拼写前几个字母自动补全，整个文件名
+#tab键：拼写前几个字母自动补全，整个文件名
 
     switch 命令：这个命令的位置，例如“switch ls”，查看ls程序命令的位置在哪，一般在bin中。
 
-Linux/Unix 环境的目录层次结构
+#Linux/Unix 环境的目录层次结构
+ 
     通用标准系统根目录：大部分linux系统都按照这个文件夹格式，但是可能会略有不同。
-   root/:所有都在根目录内，包括各种挂载的磁盘也是。
+    root/:所有都在根目录内，包括各种挂载的磁盘也是。
     |--bin：必要的用户二进制文件/程序(系统核心部分，可执行的程序命令)：shell中所使用的命令(程序)
     |--usr：同样是二进制文件，是用户实际安装的应用程序：微信、火狐浏览器等等（只读）
     |--boot：静态boot文件，包含系统启动所需的文件，启动系统所需的基本内核模块
@@ -101,6 +104,7 @@ Linux/Unix 环境的目录层次结构
 
 
 多种类型的shell
+    
     ~ /bin/
     |--bash:一种输入输出并解释的shell（shell解释器），the bourne-again shell。打开shell默认是bash
     |--zsh:另一种新的shell,进入zsh可直接输入zsh，退出输入exit
@@ -127,10 +131,13 @@ Linux/Unix 环境的目录层次结构
 
     find:根据某某方式查找文件。例子：find . -name Game.h。 在当前源位置(.)，查找name的方式(-name)，查找名为<Game.h>的文件。该命令以递归的方式查找该位置下的所有。  命令位置/usr/bin/
 
-shell中显示进程相关
+#shell中显示进程相关
+    
     top：一个二进制应用，告诉用户这台Linux管理上所有任务和进程
     htop:更友好的视图方式，显示进程内容。 q:退出       
-打印显示：
+
+#打印显示：
+    
     ps x:展示该用户出所有正在执行的进程
     ps ax ：展示包括系统程序在内的所有进程
     ps aux：展示所有程序信息，包括每个进程的详细信息
@@ -139,7 +146,8 @@ shell中显示进程相关
     kill -9 进程ID :强制杀死某个进程，ID可以通过ps命令查看
     man kill：查看kill的所有-命令内容
 
-shell 的输入和输出
+#shell 的输入和输出
+    
     > :输出重定向
     例子1：ls -l > ListOfFiles.txt 在当前位置生成一个txt文件，把输出内容放入。
     例子2：grep -R "/SDL.h" * > SDLOcurrences.txt :将当前位置的所有内容包括递归的所有子项，查找内部写有"/SDL.h"的文件，并重新定向输出到名为SDLOcurrences的新建txt文件中。
@@ -151,7 +159,8 @@ shell 的输入和输出
     head -n1 < /etc/passwd : 将过滤只剩下1行，进行输出
     tail :输出某个文件的后几行
     
-< | >：管道命令，可以在某物的输出作为另一过程的输入中，起到连接作用。
+#< | >：管道命令，可以在某物的输出作为另一过程的输入中，起到连接作用。
+    
     cowsay：奶牛说
     例子1:ls | cowsay   ：ls输出，cowsay输入
     例子2:echo $0 | cowsay  :echo输出，cowsay输入
@@ -171,7 +180,8 @@ shell 的输入和输出
 
     login：登陆账户
 
-文件权限：当我们输入ls -l查看每一行的文件时，第一部分内容就是他的权限信息。
+#文件权限：当我们输入ls -l查看每一行的文件时，第一部分内容就是他的权限信息。
+    
     例如：-rwxr--r--,第一位file type（d,l,-）d：文件夹、l:链接(类似win的快捷方式)、-：文件
      uesr group others
     -rwx   rwx   rwx   r：read可读、w：write可写、x：execute可执行
@@ -184,7 +194,8 @@ shell 的输入和输出
 
         执行文件：./name.格式   .就是告诉Linux在当前目录中运行，某个name.格式的文件
 
-包管理器：Package Managers
+#包管理器：Package Managers
+    
     安装.deb格式文件，因为使用的是debain延伸的系统。
     sudo apt install ./文件名.格式
     sudo apt-cache search <描述、标签> ：查找搜寻你可能要找的程序包
