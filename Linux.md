@@ -101,7 +101,7 @@ Linux/Unix 环境的目录层次结构
 
 
 多种类型的shell
-~ /bin/
+    ~ /bin/
     |--bash:一种输入输出并解释的shell（shell解释器），the bourne-again shell。打开shell默认是bash
     |--zsh:另一种新的shell,进入zsh可直接输入zsh，退出输入exit
     |--ksh：korn shell
