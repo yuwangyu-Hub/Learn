@@ -236,6 +236,8 @@ Linux Shell 学习
 
 
 #shell script：shell脚本
+
+    注意：shell脚本中表达式不可以加空格，例如=号两端
     
     原理：多个shell命令放入同一个文件中，一起执行。
     .sh后缀格式文件就是shell脚本文件。
@@ -248,7 +250,25 @@ Linux Shell 学习
         echo "Good bey"
     保存导出后，需要用当前使用的shell来运行脚本。如：bash ./welcome.sh
 
+#shell脚本案例1:一般的shell脚本在首行，会写调用解释器
 
+    #!/bin/sh   #调用解释器
 
+    #################################################
+    # Display a welcome set of messages to the user #
+    #################################################
+    echo "Hello World" 
+    echo "Welcome to the system"
+    echo "Good bey"
+
+    文件保存后退出，需要修改执行权限后才可以运行：./welcome.sh
+
+shell脚本案例2：nano vars.sh  --创建vars脚本
+
+    
+    
+    
+
+    
 
         
