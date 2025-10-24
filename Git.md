@@ -1,5 +1,7 @@
 #Git以及Github学习
 
+  linux中的复制与粘贴：选中即可复制、按下滚轮即可粘贴
+
 #设置本地用户信息
   
   git config --global user.name "name"
@@ -29,6 +31,12 @@
     --pretty=oneline 将提交信息显示为一行
     --abbrev-commit 使得输出的commit id更简短
     --graph 以图形显示
-  可以通过在.bashrc中添加alias命令，来简化log输出的复杂写法：
+  可以通过在.bashrc（如果没有需要创建）中添加alias命令，来简化log输出的复杂写法：
   alias git-log='git log --pretty=oneline --all --graph --abbrev-cmomit'
   相当于git-log替换了原有复杂写法，这样输入git-log就可以得到后面复杂写法的同样效果。
+
+#版本回退
+
+  git reset --hard commitID :commitID 可以通过git log指令查看
+  
+  
