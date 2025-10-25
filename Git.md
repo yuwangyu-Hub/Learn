@@ -24,6 +24,7 @@
 #工作区->暂存区->仓库(本地仓库)
   
     git status :查看当前状态，分为提交了和没提交，如果有没提交的文集那，会显示文件状态：未跟踪、未暂存、已暂存
+    git status -s ；查看当前状态的简略模式。
     git add <文件> ：对于新添加的文件和修改的文件使用git add 添加到暂存区
     git add . :添加所有到暂存区
     git commit -m "具体的注释内容" ：提交至仓库，单引号或双引号都可以，注意该命令只会提交暂存区的文件，也就是说如果文件没有git add，那这个文件是不会被git commit提交的。
@@ -39,31 +40,66 @@
     Untrack    Unmodified    Modified      Staged
     未跟踪        未修改        已修改         已暂存
 
+    ls ：普通的ls查看工作区内容
+    git ls-files ：查看暂存区内容
+    
+
 #版本回退
 
     git reset --hard commitID :硬的,表示回退到某个版本，丢弃掉工作区和暂存区的所有内容。
               --soft commitID :软的,表示回退到某个版本，保存工作区和暂存区所有内容。
-              --mixed commitID :混合的，表示回退到某个版本，只保留工作区的内容，丢弃暂存区的内容。
+              --mixed commitID :混合的，表示回退到某个版本，只保留工作区的内容，丢弃暂存区的内容。如故不添加后缀，默认就是mixed
     commitID 可以通过git log指令查看
-    
-    git reflog :这个指令可以看到已经删除的提交记录
 
-#git忽略的文件
+    一般可使用soft，这样虽然回退了，但是你在工作区和暂存区的内容还在，谨慎使用hard。
+    
+    git reflog :这个指令可以看到已经删除的提交记录/操作的历史记录
+
+#git diff ： 查看版本差异
+
+    git diff:   1.查看文件在工作区、暂存区以及版本库之间的差异  
+                2.查看文件在两个特定版本之间的差异  
+                3.文件在两个分支之间的差异
+    git diff ：默认比较的是工作区和暂存区之间的差异内容，会显示发生更改的文件以及更改的详细信息.当提交后工作区和暂存区内容相同，git diff就没有内容了
+    git diff HEAD ：比较工作区和版本库之间的差异
+    git diff --cached : 比较暂存区和版本库之间的差异
+    git diff 版本ID1 版本ID2 : 比较两个特定版本之间的差异
+    git diff 其他版本ID HEAD ：HEAD来表示当前分支的最新提交，HEAD指向分支的最新提交节点,比较其他版本与当前版本的差异
+    git diff HEAD~ HEAD :比较前一个版本(HEAD~表示)和当前版本的差异
+    git diff HEAD^ HEAD :与上一个命令一样。比较当前版本与前一个版本的差异
+    git diff HEAD~2 HEAD ： 表示之前2个版本和当前版本的差异
+
+#删除文件
+
+    rm 文件名.格式 ：删除文件，这里的rm并不是git的命令，并且只是删除了工作区的文件，暂存区的文件并没有被删除，所以还需要git add 文件名.格式/git add .来告诉git暂存区的文件也删除。注意理解git add并不是添加内容，而是添加信息(这个信息可以是增加，也可以是删除）
+    git rm 文件名.格式 ：直接同时删除工作区和暂存区的文件。
+    git rm --cached 文件名.格式 ：只删除版本库中的文件，工作区和暂存区的不动
+    最后还应该要commit提交
+
+#git忽略的文件：.gitignore
 
     一般我们总会有些文件无需纳入git的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。在这种情况下，我们可以在工作目录中创建一个名为.gitignore的文件(文件名固定)，列出要忽略的文件模式。
     添加名为 .gitignore 的文件。在文件中把不想要git管理的文件写入即可。
-    案例：#为shell中的注释
-    # no .a files
+    添加忽略文件夹：文件夹名/   文件夹的格式要以/结尾才行
+    可以这么写：echo 不想要管理的文件 > .gitignore :既创建了.gitignore 又将其定向写入
+    再git status 就无法看到该文件
+
+    注意.gitignore 无法对已经添加到版本仓库的文件产生影响
+
+    git无法将空文件夹添加到版本控制中
+    
+    案例：#:shell中的注释，仅适用于.gitignore
+    # no .a files，忽略所有的.a文件
     *.a
-    # but do track lib.a, even though you`re ignoring .a files above,但是需要跟踪lib.a，尽管你上面忽略了所有.a文件。就是除了lib.a的意思
-    !lib.a
-    # only ignore the TODO file in the current directory, not subdir/TODO
+    # but do track lib.a, even though you`re ignoring .a files above,在上一条基础上，但是需要跟踪lib.a，尽管你上面忽略了所有.a文件。就是除了lib.a的意思
+    !lib.a    表示取反
+    # only ignore the TODO file in the current directory, not subdir/TODO，只忽略当前目录下的TODO文件，而不忽略subdir/TUDO (子目录下的TODO)
     /TODO
-    # ignore all files in the build/ directory
+    # ignore all files in the build/ directory，忽略任何目录下名为build的文件夹
     build/
-    # ignore doc/notes.txt,but not doc/server/arch.txt
+    # ignore doc/notes.txt,but not doc/server/arch.txt ，忽略 doc文件夹下所有的以txt格式的文件, 但不忽略子目录下的以txt结尾的文件。
     doc/*.txt
-    # ignore all .pdf files in the doc/ directory
+    # ignore all .pdf files in the doc/ directory,忽略 doc/目录及其所有子目录下的 .pdf文件
     doc/**/*.pdf
 
 #分支
@@ -101,8 +137,32 @@
 
         `还有一些其他分支，在此不再详述，例如test分支（用于代码测试）、pre分支（预上线分支）等等。
 
-#Git远程仓库h
-    
+#Git远程仓库：github
+
+    配置ssh密钥：
+        1.  回到根目录 cd ~ 或者 cd
+        2.  cd .ssh 进入.ssh目录
+        3.  ssh-keygen -t rsa -b 4096 :使用这个命令生成密钥，-t 指定协议为rsa  -b 指定密钥大小为4096
+        4. 显示信息：Enter file in which to save the key(/Users/**/.ssh/id_rsa)  第一次创建密钥可以回车，不用修改默认文件名。如果之前已经配置了ssh密钥，不要回车，回车会覆盖掉之前的密钥文件），所以要输入一个新的名字 后 再回车
+        5.  输入密钥密码 再回车
+        6.  ls -l 查看本地目录，找到刚才创建的密钥：两个文件（命名的文件，命名的文件.pub）命名的文件没有任何扩展名，是私钥文件。以pub格式结尾的是公钥文件。vi 打开 pub格式文件，复制密钥内容。
+        7.  打开github用户头像下setting--SSH and GPG keys--new SSH key--复制密钥并写title添加
+    如果第一次创建SSH密钥，并且没有修改过默认的文件名。SSH密钥的配置这里就完成了。
+    如果不是第一次创建，指定了新的文件名，还需要增加一步配置：
+        1. 创建config文件
+        2. 把下面五行内容添加进：
+            # github
+            Host github.com
+            HostName github.com
+            PreferredAuthentications publickey
+            IdentityFile ~/.ssh/修改的文件名
+        配置文件的意思：当我们访问github.com的时候，指定使用SSH下的修改的文件名的这个密钥
+
+    最后在回到本地仓库位置，执行：git clone github上SSH地址    把远程仓库克隆到本地
+    在输入刚刚设置好的密码
+
+    git push :推送
+    git pull :拉取
 
 
 
