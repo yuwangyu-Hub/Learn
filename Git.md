@@ -3,8 +3,6 @@
     linux中的复制与粘贴：选中即可复制、按下滚轮即可粘贴
 
 #设置本地用户信息
-  
-    git config --global user.name "name"
     git config --global user.email "email"
 
 #查看本地用户信息
