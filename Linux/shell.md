@@ -269,12 +269,3 @@ Linux Shell 学习
 shell脚本案例2：nano vars.sh  --创建vars脚本
 
     
-
-    
-    
-    
-    
-
-    
-
-        
