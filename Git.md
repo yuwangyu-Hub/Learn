@@ -11,13 +11,14 @@
 
     git config --global user.name
     git config --global user.email
+    git config --global --list
 
-#获取本地仓库
+#获取/创建本地仓库
 
     要使用Git对我们的代码进行版本控制，首先需要获得本地仓库
     1)在电脑的任意位置创建一个空目录（例如test）作为我们的本地Git仓库
     2)进入这个目录中，点击右键打开Git bash窗口
-    3)执行命令git init
+    3)执行命令：git init，如果git init name，后指定名称：在当前文件夹下创建新name文件夹作为仓库
     4)如果创建成功后可在文件夹下看到隐藏的.git目录
 
 #工作区->暂存区->仓库(本地仓库)
@@ -34,6 +35,9 @@
     可以通过在.bashrc（如果没有需要创建）中添加alias命令，来简化log输出的复杂写法：
     alias git-log='git log --pretty=oneline --all --graph --abbrev-cmomit'
     相当于git-log替换了原有复杂写法，这样输入git-log就可以得到后面复杂写法的同样效果。
+
+    Untrack    Unmodified    Modified      Staged
+    未跟踪        未修改        已修改         已暂存
 
 #版本回退
 
@@ -93,7 +97,7 @@
 
         `还有一些其他分支，在此不再详述，例如test分支（用于代码测试）、pre分支（预上线分支）等等。
 
-
+#Git远程仓库h
     
 
 
