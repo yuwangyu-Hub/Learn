@@ -26,7 +26,7 @@
     git status :查看当前状态，分为提交了和没提交，如果有没提交的文集那，会显示文件状态：未跟踪、未暂存、已暂存
     git add <文件> ：对于新添加的文件和修改的文件使用git add 添加到暂存区
     git add . :添加所有到暂存区
-    git commit -m "具体的注释内容" ：提交至仓库，单引号或双引号都可以
+    git commit -m "具体的注释内容" ：提交至仓库，单引号或双引号都可以，注意该命令只会提交暂存区的文件，也就是说如果文件没有git add，那这个文件是不会被git commit提交的。
     git log :查看提交记录
     --all 显示所有分支
     --pretty=oneline 将提交信息显示为一行
@@ -41,7 +41,11 @@
 
 #版本回退
 
-    git reset --hard commitID :commitID 可以通过git log指令查看
+    git reset --hard commitID :硬的,表示回退到某个版本，丢弃掉工作区和暂存区的所有内容。
+              --soft commitID :软的,表示回退到某个版本，保存工作区和暂存区所有内容。
+              --mixed commitID :混合的，表示回退到某个版本，只保留工作区的内容，丢弃暂存区的内容。
+    commitID 可以通过git log指令查看
+    
     git reflog :这个指令可以看到已经删除的提交记录
 
 #git忽略的文件
