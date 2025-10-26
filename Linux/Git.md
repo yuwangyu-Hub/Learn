@@ -135,7 +135,7 @@
 
         `还有一些其他分支，在此不再详述，例如test分支（用于代码测试）、pre分支（预上线分支）等等。
 
-#Git远程仓库：github
+#Git远程仓库：把远程仓库github内容关联到本地，远程有，本地空
 
     配置ssh密钥：
         1.  回到根目录 cd ~ 或者 cd
@@ -162,10 +162,26 @@
     git push :推送
     git pull :拉取
 
-测试插入部分。
+#Git远程仓库：把本地已有的内容关联到github上，本地有，远程空
+
+	1. 在github上创建新的远程仓库
+	2. 复制远程仓库的SSH链接地址
+	3. 终端进入需要上传的本地仓库位置
+	4. 输入：git remote add origin 地址
+		一般新创建好的空的远程仓库，在第二个说明（...or push an existing repository from the command line）中有。
+	5. git remote -v 
+		查看当前仓库所对应的远程仓库的别名和地址
+	6. git brance -M main 
+		指定分区的名称为main，因为默认的分支名称就是main，所以这一行可以省略
+	7. git push -u origin main:main
+		把本地的main分支和远程origin仓库的main分支关联起来,前面的main是本地仓库分支，后一个main是远程仓库分支，如果本地仓库名称与远程仓库名称相同后面的:main可以省略，-u：upstream的缩写
+	8. 远程仓库页面刷新
+
+#push 推送到远程仓库
 
 
+#pull 拉取到本地仓库
 
-    
-  
-  
+# VScode的使用
+	
+	在仓库位置打开终端，输入code. :使用vscode打开当前目录
