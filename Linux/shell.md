@@ -1,9 +1,10 @@
 Linux Shell 学习
 
+    linux minit gui系统下打开纯控制台：ctrl+alt+（F1-F6）：打开1-6个控制台。 ctrl+alt+F7：切换到Gui桌面。
     linux中的复制与粘贴：选中即可复制、按下滚轮即可粘贴
-    
+
 #命令：
-    
+
     pwd :显示现在所在的目录
 
     whoami :显示当前用户名\显示以什么身份登陆
@@ -24,16 +25,16 @@ Linux Shell 学习
     cd .. :返回上一层
 
     cd ../..:返回上级的上级
-    
+
     . :当前位置源，如果输入 cd . ：会回到当前位置。
 
     cat file.txt :打开txt类型的文件，查看内容
 
     touch README.txt: 创建一个没有内容的README.txt文件
-    
+
     rm README.txt : 删除这README.txt文件        
     rm file_1.txt file_2.txt: 支持多文件删除
-    
+
     nano README.txt : 使用nano（文本工具）创建并打开README.txt
 
     ls --help:显示出ls 后的帮助注释。也可以使用man ls。
@@ -63,12 +64,12 @@ Linux Shell 学习
     mv *.mp3 Musics/: 将当前位置的所有.mp3格式的文件移动到当前位置上名为Nusics的文件夹内
     mv (源) (目标)：目标可以是地址，也可以是新的文件名(文件名就是改名字了)   
     注意:在linux或unix中没有专门用来重命名的命令，可以通过使用mv命令，将文件(文件夹)移动到另一个文件(文件夹)的方式来达到重命名的效果 
-    
+
     "" : 容器
     "~/Documents/Original file.txt":双引号内放置的内容可以带有空格，但是在shell中空格代表这间隔,不能有多余空格存在，会识别错误。
 
 #不同的文件颜色，反应出文件的不同类型。
-    
+
     蓝色：文件夹
     绿色：文件
     白色：许可证文件，Makefile、LICENSE
@@ -106,7 +107,7 @@ Linux Shell 学习
 
 
 #多种类型的shell
-    
+
     ~ /bin/
     |--bash:一种输入输出并解释的shell（shell解释器），the bourne-again shell。打开shell默认是bash
     |--zsh:另一种新的shell,进入zsh可直接输入zsh，退出输入exit
@@ -117,7 +118,7 @@ Linux Shell 学习
     回显信息，将输入的内容打印在shell上，例子：echo "Hello world" 参考print。
 
 #环境变量：存储信息，存储内容，可以用标识符给他们贴标签。
-     
+ 
       |-- $0 : shell的名称。例子：echo $0 ,显示当前使用的shell的名称
       |-- $USER : 用户名
       |-- $HOME : 用户home文件夹的全路径
@@ -127,7 +128,7 @@ Linux Shell 学习
 
     PATH=$PATH:想要执行的程序的万地址   例：PATH=$PATH:~/src/raycaster/raycasting-awk,在这个地址位置下的程序：run.sh程序就可以在任何位置执行了，但是一旦重启会失去设置的环境变量，可以使用下面的rc文件添加。
     env ：可视化查看所有的环境变量    
-    
+ 
     rc文件:.bashrc、.zshrc、等等。这是对应shell的rc文件。可以通过nano程序打开rc文件进行修改添加。
     可以将PATH环境变量的添加内容，加入到rc文件中，这样就不会每次重新登陆用户后，设置的环境变量失效重新设置。
     具体方法：export PATH=$PATH:~/src/raycaster/raycasting-awk   export可以在echo $PATH的导出中查看
@@ -139,12 +140,12 @@ Linux Shell 学习
     find:根据某某方式查找文件。例子：find . -name Game.h。 在当前源位置(.)，查找name的方式(-name)，查找名为<Game.h>的文件。该命令以递归的方式查找该位置下的所有。  命令位置/usr/bin/
 
 #shell中显示进程相关
-    
+ 
     top：一个二进制应用，告诉用户这台Linux管理上所有任务和进程
     htop:更友好的视图方式，显示进程内容。 q:退出       
 
 #打印显示：
-    
+ 
     ps x:展示该用户出所有正在执行的进程
     ps ax ：展示包括系统程序在内的所有进程
     ps aux：展示所有程序信息，包括每个进程的详细信息
@@ -154,7 +155,7 @@ Linux Shell 学习
     man kill：查看kill的所有-命令内容
 
 #shell 的输入和输出
-    
+ 
     > :输出重定向
     例子1：ls -l > ListOfFiles.txt 在当前位置生成一个txt文件，把输出内容放入。
     例子2：grep -R "/SDL.h" * > SDLOcurrences.txt :将当前位置的所有内容包括递归的所有子项，查找内部写有"/SDL.h"的文件，并重新定向输出到名为SDLOcurrences的新建txt文件中。
@@ -166,9 +167,9 @@ Linux Shell 学习
     head < /etc/passwd:将passwd文件定向给head，让head进行输出
     head -n1 < /etc/passwd : 将过滤只剩下1行，进行输出
     tail :输出某个文件的后几行
-    
+ 
 #< | >：管道命令，可以在某物的输出作为另一过程的输入中，起到连接作用。
-    
+ 
     cowsay：奶牛说
     例子1:ls | cowsay   ：ls输出，cowsay输入
     例子2:echo $0 | cowsay  :echo输出，cowsay输入
@@ -189,7 +190,7 @@ Linux Shell 学习
     login：登陆账户
 
 #文件权限：当我们输入ls -l查看每一行的文件时，第一部分内容就是他的权限信息。
-    
+ 
     例如：-rwxr--r--,第一位file type（d,l,-）d：文件夹、l:链接(类似win的快捷方式)、-：文件
      uesr group others
     -rwx   rwx   rwx   r：read可读、w：write可写、x：execute可执行
@@ -203,20 +204,20 @@ Linux Shell 学习
         执行文件：./name.格式   .就是告诉Linux在当前目录中运行，某个name.格式的文件
 
 #包管理器：Package Managers
-    
+ 
     安装.deb格式文件，因为使用的是debain延伸的系统。
     sudo apt install ./文件名.格式
     sudo apt-cache search <描述、标签> ：查找搜寻你可能要找的程序包
 
 #文本编辑器：
-    
+ 
     nano
     vim
 理解系统调用
-   
+
     fork()：create a child process identical to the parent
         c程序，系统调用，请求内核复制创建一个
-    
+ 
     exec(): start a program replacing the current process
 
     open(): open a file for reading, writing, or both
@@ -230,9 +231,9 @@ Linux Shell 学习
     getpid(): return the PID of the caller
 
     getppid(): return the PID of the parnt of caller
-    
+ 
 #子进程
-    
+ 
     gcc name.c -o name :编译名字为name.c文件,然后-o输出到name的可执行文件中。
 
 #常用的shell工具
@@ -241,7 +242,7 @@ Linux Shell 学习
 #shell script：shell脚本
 
     注意：shell脚本中表达式不可以加空格，例如=号两端
-    
+ 
     原理：多个shell命令放入同一个文件中，一起执行。
     .sh后缀格式文件就是shell脚本文件。
     如果是处理更复杂的内容shell就会变得更加的冗余，这时候就需要转向更合适的语言如python。但是在处理相对简单的任务时是非常有效的。
@@ -266,6 +267,6 @@ Linux Shell 学习
 
     文件保存后退出，需要修改执行权限后才可以运行：./welcome.sh
 
-shell脚本案例2：nano vars.sh  --创建vars脚本
+#shell脚本案例2：nano vars.sh  --创建vars脚本
 
-    
+ 
