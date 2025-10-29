@@ -1,4 +1,6 @@
 Linux Shell 学习
+    
+    fastfetch : 显示linux电脑的软硬件信息
 
     linux minit gui系统下打开纯控制台：ctrl+alt+（F1-F6）：打开1-6个控制台。 ctrl+alt+F7：切换到Gui桌面。
     linux中的复制与粘贴：选中即可复制、按下滚轮即可粘贴
