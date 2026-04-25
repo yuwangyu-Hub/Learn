@@ -109,3 +109,14 @@ local btnv = btn()&0b1111
 ```
 只是部分，还有其他很多。
 
+## picotron中的多地图多图层的地图tile编号获取
+
+在picotron中mget只能作为0.map这张地图的第一层获取。限制在了单一地图的设置。
+如果想要获取到多地图的某一层需要：
+```lua
+    my_map = fetch("map/1.map") -- 加载你的地图
+    -- 读取 图层0 的 (5,5)
+    id = my_map[1].bmp:get(5, 5)
+```
+
+
