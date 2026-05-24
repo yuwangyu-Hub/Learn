@@ -178,3 +178,18 @@ open -n -a PICO-8 --args -run /Users/wangyu/Library/Application Support/pico-8/c
 |control+b|快速注释/取消注释 光标所在行|
 |shift+enter|自动补全|
 |control+p|开启/关闭 小字体|
+
+# pico8中的表的键值对特点
+
+因为pico8中所用的是lua5.1特性，语法只统计『数字索引』的数组元素，不统计『键值对（字符串）键』元素
+所以如果是以下方式无法获取到组的长度
+```lua
+role={cat={},dog={},frog={},bird={}}
+print(#role)
+```
+输出结果为0
+并且也无法通过 "role[index]" 获取到元素。
+只能用下面的方式
+```lua
+role={{name="cat"},{name="dog"},{name="frog"},{name="bird"}}
+```
