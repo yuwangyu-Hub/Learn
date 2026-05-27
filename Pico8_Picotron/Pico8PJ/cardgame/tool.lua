@@ -218,7 +218,6 @@ function check_card_move(card,type)
             end
         end
     end
-    debug1=i
     --如果所有牌都移动到目标位置
     if i == #card then
         return true-- 发牌完成

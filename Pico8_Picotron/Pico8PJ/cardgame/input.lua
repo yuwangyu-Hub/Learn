@@ -29,21 +29,22 @@ end
 
 function check_select_role()
     local t={1,2,3,4}
-    if slt_cursor.count==1 then
+    if slt_cursor.count==1 then--青蛙
         del(t,1)
-        playerole=role[1] --青蛙
-        enemyole=role[rnd(t)] --猫
-    elseif slt_cursor.count==2 then
+        playerole=role[1] 
+        enemyole=role[rnd(t)] --随机剩下的
+    elseif slt_cursor.count==2 then--猫
         del(t,1)
-        playerole=role[2] --猫
-        enemyole=role[rnd(t)] --鸟
-    elseif slt_cursor.count==3 then
+        playerole=role[2] 
+        enemyole=role[rnd(t)] 
+    elseif slt_cursor.count==3 then--鸟
         del(t,1)
-        playerole=role[3] --鸟
-        enemyole=role[rnd(t)] --兔子
-    elseif slt_cursor.count==4 then
+        playerole=role[3] 
+        enemyole=role[rnd(t)] 
+    elseif slt_cursor.count==4 then--兔子
         del(t,1)
-        playerole=role[4] --兔子
-        enemyole=role[rnd(t)] --鸟
+        playerole=role[4] 
+        enemyole=role[rnd(t)] 
     end
+    debug1 = playerole
 end

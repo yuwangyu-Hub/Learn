@@ -75,9 +75,14 @@ function draw_select()
     for i=1,4 do
         sspr((i-1)*24,64,20,20,select_x+(i-1)*30,select_y)
     end
-    --选择光标
+
+    --玩家选择光标
     spr(slt_cursor.spr_up,select_x+6+(slt_cursor.count-1)*30,select_y-6)--上方
     spr(slt_cursor.spr_down,select_x+6+(slt_cursor.count-1)*30,select_y+22)--下方
+
+    if playerole then --如果玩家选择角色后
+
+    end
 end
 
 local title_y=-35

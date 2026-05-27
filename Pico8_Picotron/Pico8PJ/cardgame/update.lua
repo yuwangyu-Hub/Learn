@@ -1,14 +1,15 @@
 -- 更新游戏运行状态
 function update_game()
     title_t=0
-    mx=stat(32)
-    my=stat(33)
+    mx=stat(32) --鼠标x坐标,为了绘制鼠标位置
+    my=stat(33) --鼠标y坐标
     mb=stat(34)--鼠标左键为1、右键为2，中键为4
     
     --游戏回合
     gameturn()
     update_move()
 
+    --如果青蛙受伤，则受伤动画
     if isfroghurt then
         hurtshake(frog)
     end
@@ -50,9 +51,8 @@ function update_mainmenu()
 end
 
 function update_select()
-    select_input()
+    select_input() --选择角色
     if is_game then
-        
         --选择角色
         music(4)
         _upd=update_game

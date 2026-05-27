@@ -1,73 +1,66 @@
 --角色数据
-role={frog,cat,bird,rabbit}
---青蛙
-frog={
-    sprx=0,--精灵x坐标
-    spry=32,--精灵y坐标
-    sprw=25,--精灵宽度
-    sprh=23,--精灵高度
-    max_health=5,--最大血量
-    cur_health=5,--当前血量
-    attack=3,--攻击力
-    defense=3,--防御力
-    evasion_rate=0,--闪避率
-    state={
-        idel="idel",
-        defense="defense", 
-        hurt="hurt"
-    }
-}
---猫咪
-cat={
-    sprx=93,--精灵x坐标
-    spry=32,--精灵y坐标
-    sprw=28,--精灵宽度
-    sprh=25,--精灵高度
-    max_health=9,--最大血量
-    cur_health=9,--当前血量
-    attack=6,--攻击力
-    defense=0,--防御力
-    evasion_rate=0.25,--闪避率
-    state={
-        idel="idel",
-        evasion="evasion", --闪避
-        hurt="hurt",
-    }
-}
---鸟
-bird={
-    sprx=26,
-    spry=32,
-    sprw=36,
-    sprh=22,
-    max_health=3,--最大血量
-    cur_health=3,--当前血量
-    attack=3,--攻击力
-    defense=5,--防御力
-    evasion_rate=0,--闪避率
-    state={
-        idel="idel",
-        defense="defense", 
-        hurt="hurt"
-    }
-}
---兔子（看上去安静，暴躁起来伤害爆炸）
-rabbit={
-    sprx=65,
-    spry=32,
-    sprw=22,
-    sprh=24,
-    max_health=5,--最大血量
-    cur_health=5,--当前血量
-    attack=1-3,--攻击力
-    defense=6,--防御力:6-attack
-    evasion_rate=0,--闪避率
-    state={
-        idel="idel",
-        defense="defense", 
-        hurt="hurt"
-    }
-}
+role={{
+    name="frog",--名字
+        sprx=0,--精灵x坐标
+        spry=32,--精灵y坐标
+        sprw=25,--精灵宽度
+        sprh=23,--精灵高度
+        max_health=5,--最大血量
+        cur_health=5,--当前血量
+        attack=3,--攻击力
+        defense=3,--防御力
+        evasion_rate=0,--闪避率
+        state={
+            idel="idel",
+            defense="defense", 
+            hurt="hurt"}
+},{
+    name="cat",--名字
+        sprx=93,--精灵x坐标
+        spry=32,--精灵y坐标
+        sprw=28,--精灵宽度
+        sprh=25,--精灵高度
+        max_health=9,--最大血量
+        cur_health=9,--当前血量
+        attack=6,--攻击力
+        defense=0,--防御力
+        evasion_rate=0.25,--闪避率
+        state={
+            idel="idel",
+            evasion="evasion", --闪避
+            hurt="hurt"}
+},{
+    name="bird",--名字
+        sprx=26,
+        spry=32,
+        sprw=36,
+        sprh=22,
+        max_health=3,--最大血量
+        cur_health=3,--当前血量
+        attack=3,--攻击力
+        defense=5,--防御力
+        evasion_rate=0,--闪避率
+        state={
+            idel="idel",
+            defense="defense", 
+            hurt="hurt"}
+},{
+    name="rabbit",--名字
+        sprx=65,
+        spry=32,
+        sprw=22,
+        sprh=24,
+        max_health=5,--最大血量
+        cur_health=5,--当前血量
+        attack=flr(rnd(3))+1,--攻击力
+        defense=6,--防御力:6-attack
+        evasion_rate=0,--闪避率
+        state={
+            idel="idel",
+            defense="defense", 
+            hurt="hurt"}
+}}
+
 --制作一张卡
 function makecart(_n,_type,_detail)
     local cart={
@@ -82,7 +75,7 @@ function makecart(_n,_type,_detail)
     return cart
 end
 
---宽12，长14
+--具体的卡面内容。宽12，长14
 frog_cart={
     --单手攻击一次
     makecart(1,"frog","1-hand/atk x1/dmg x1"), --单手攻击
@@ -97,7 +90,7 @@ frog_cart={
     --青蛙叫攻击力加一
     makecart(8,"frog","frog croak/atk +1/dmg x0"), --青蛙叫
     --吐舌头，降低敌人闪避
-    makecart(9,"frog","tongue lash/en_eva down/dmg x0"), --吐舌头
+    makecart(9,"frog","tongue lash/enemy/eva 0%"), --吐舌头
     --苍蝇团，连续三回合回血
     makecart(10,"frog","swm-fly/hl +1/3 rounds"),--苍蝇团swarm of flies
 }
@@ -118,19 +111,34 @@ cat_cart={
     makecart(19,"cat","act cute/next turn/par en "),
     makecart(20,"cat","drowsy/self par/en dmg -2"),--犯困
 }
+bird_cart={
+    makecart(21,"bird","down_att/atk x1/dmg x1"),--俯冲攻击
+    makecart(22,"bird","down_att/atk x1/dmg x1"),
+    makecart(23,"bird","fly/next turn/eva 100%"),
+    makecart(24,"bird","fly/next turn/eva 100%"),
+    makecart(25,"bird","poop/enemy/eva 0%"),
+    makecart(26,"bird","poop/enemy/eva 0%"),
+    makecart(27,"bird","wing strike/atk x1/dmg x1"),
+    makecart(28,"bird","wing strike/atk x1/dmg x1"),
+    makecart(29,"bird","wing strike/atk x1/dmg x1"),
+    makecart(30,"bird","wing strike/atk x1/dmg x1"),
+}
+
 
 pub_cart={
-    makecart(21,"pub","hl +3"),--加血包
-    makecart(22,"pub","hl +3"),
-    makecart(23,"pub","hl +3"),
-    makecart(24,"pub","atk +1"),--增加攻击力+1
-    makecart(25,"pub","atk +1"),
-    makecart(26,"pub","atk +1"),
-    makecart(27,"pub","def +1"),--增加防御力（猫咪无法使用）
-    makecart(28,"pub","def +1"),
-    makecart(29,"pub","def +1"),
-    makecart(30,"pub","stun/next turn/dis opp x1"),--晕眩：下回合对方无法行动，暂停一回合disable opponent
+    makecart(41,"pub","hl +3"),--加血包
+    makecart(42,"pub","hl +3"),
+    makecart(43,"pub","hl +3"),
+    makecart(44,"pub","atk +1"),--增加攻击力+1
+    makecart(45,"pub","atk +1"),
+    makecart(46,"pub","atk +1"),
+    makecart(47,"pub","def +1"),--增加防御力（猫咪无法使用）
+    makecart(48,"pub","def +1"),
+    makecart(49,"pub","def +1"),
+    makecart(50,"pub","stun/next turn/dis opp x1"),--晕眩：下回合对方无法行动，暂停一回合disable opponent
 }
+
+
 card_table={}--每次牌阵一共20张牌
 showcart={}--展示的卡
 

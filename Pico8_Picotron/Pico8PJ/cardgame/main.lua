@@ -17,9 +17,9 @@ gamestate={
     recyclecartstate="recyclecartstate",--回收牌
     endgamestate="endgamestate",--游戏结束
 }
---x=5\y=99
+--x=5\y=99,主角选中的角色
 playerole=nil
---x=4/y=7
+--x=4/y=7,敌人选中的角色
 enemyrole=nil
 
 curstate=gamestate.sendcartstate--当前游戏状态：刚进入游戏，先发牌
@@ -56,10 +56,11 @@ function _draw()
             print(card_table[i].y,85,i*6-2)
         end
     end]]
+    print(#role,60,10,8)
 end
 
 function printdebug()
-    --print(time,60,1,8)
+    print(debug1,60,1,8)
 end
 function gamestart()
     -- 游戏开始
